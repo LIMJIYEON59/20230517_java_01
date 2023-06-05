@@ -1,11 +1,24 @@
 package kh.lcalss.oo.sample;
 
-public class Person {		//class name은 무조건 대문자
-	protected String name;
-	private int age;
-	private char gender;
+import java.io.Serializable;
+
+/**
+ * @author user1
+ *
+ */
+public class Person  implements Serializable {	
+	
+	private static final long serialVersionUID = -6655554492649987708L;
+
+	
+	protected String name;	//주민등록증상이름
+	private int age;	//만
+	private transient char gender;	//'남' /'여'
+
 
 	// 기본 생성자
+	/**/
+	/****/
 	public Person () {}		//public class *** 생성자 이름, 초기값 설정
 		
 	
