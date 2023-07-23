@@ -69,7 +69,7 @@ public class TcpServer {
 				if (br != null) br.close();
 				if (out != null) out.close();
 				if (in != null)	in.close();
-				if (sc != null)	sc.close();
+				if (sc != null)	sc.close(); 
 				if (ss != null)	ss.close();	//선언한 모든 것들 t-c 밖으로 뺴내야 한다
 
 			} catch (IOException e) {
