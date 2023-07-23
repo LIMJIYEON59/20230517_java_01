@@ -30,7 +30,7 @@ public class TcpClient {
 		try {
 
 			// 1. 서버의 IP 주소와 서버가 정한 포트번호를 매개변수로 하여 클라이언트용 소켓 객체 생성
-			socket = new Socket(ip, port);
+			socket = new Socket(ip, port); 	//close 때문에 오류 생김 1.밖에다 선언하고 2.객체생성
 			System.out.println("서버에 접속 성공");
 			System.out.println("서버에 접속 성공");
 
