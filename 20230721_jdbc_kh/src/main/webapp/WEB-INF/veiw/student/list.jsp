@@ -34,14 +34,13 @@
 		%>	
 		
 		<!-- tr td는 html꺼라 < % 안에 들어갈 수가 없다 -->
-		<tr>
-			<td><%=vo.getStudentNO() %></td>
-			<td><%=vo.getStudentName() %></td>	
-			<td><%=vo.getEntranceDate() %></td>	
+		<!-- 클릭시 이동 -->
+		<tr> 
+			<td><a href="<%=request.getContextPath()%>/student/get?sno=<%=vo.getStudentNO()%>"><%=vo.getStudentNO()%></a></td>
+			<td><%=vo.getStudentName()%></td>	
+			<td><%=vo.getEntranceDate()%></td>	
 		</tr>
-		
-		
-		
+		 
 		
 		<%
 		}

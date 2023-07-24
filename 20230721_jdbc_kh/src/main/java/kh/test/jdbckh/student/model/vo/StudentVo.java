@@ -22,12 +22,13 @@ public class StudentVo {
 	private Date entranceDate; //date라고 쓰고 java sql을 써야한다.
 	private String absenceYn; //CHAR불편 걍 String 쓰삼
 	private String coachProfessorNo;
-	
+	private String departmentName;
 	@Override
 	public String toString() {
 		return "StudentVo [studentNO=" + studentNO + ", departmentNO=" + departmentNO + ", studentName=" + studentName
 				+ ", studentSsn=" + studentSsn + ", studentAddress=" + studentAddress + ", entranceDate=" + entranceDate
-				+ ", absenceYn=" + absenceYn + ", coachProfessorNo=" + coachProfessorNo + "]";
+				+ ", absenceYn=" + absenceYn + ", coachProfessorNo=" + coachProfessorNo + ", departmentName="
+				+ departmentName + "]";
 	}
 	public String getStudentNO() {
 		return studentNO;
@@ -77,6 +78,15 @@ public class StudentVo {
 	public void setCoachProfessorNo(String coachProfessorNo) {
 		this.coachProfessorNo = coachProfessorNo;
 	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	
+	
+	
 	
 	
 }

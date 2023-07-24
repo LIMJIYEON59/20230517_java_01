@@ -14,7 +14,83 @@ import kh.test.jdbckh.student.model.vo.StudentVo;
 public class StudentDao {
 // PPT 내용구현
 	
-	// DB에서 tb_student 테이블의 있는 모든 내용을 읽어서 꺼냄.
+	// DB에서 tb_student 테이블의 전달받은 학번을 통해 학생1명의 상세정보를 읽어옴
+	public StudentVo selectOneStudent(String studentNo) {
+		// 위에 (String studentNo)파라메타를 받아온다
+		System.out.println("DAO selectOneStudent() arg:"+ studentNo);
+		
+		
+		StudentVo result = null;
+		String query = "select * from tb_student where student_no = " + "'"+studentNo+"'";
+	
+		// DB연결하기 class 이름들 좍 다 작성하기 (try-cath 문을 사용하기 때문에)
+		// 위에 먼저 작성하고 밑에 Class작성하면 try-catch문 가능해짐
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		//HTTP:8090 //Process:1521(오라클 내부접속할 때)
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "kh", "kh");
+	
+			// 연결 시키려고 if랑 else문 돌린거(1521)
+//			if(conn==null) {
+//				System.out.println("연결실패");
+//			}else {
+//				System.out.println("연결 성공");
+//			}
+			
+			
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				//result new 생성해줘야한다.
+				result = new StudentVo();
+				//while 동작시킬필요없음. qyery 결과가 단일행일 것이므로
+				result.setAbsenceYn(rset.getString("Absence_Yn"));
+				result.setCoachProfessorNo(rset.getString("Coach_Professor_No"));
+				result.setDepartmentNO(rset.getString("Department_No"));
+				result.setEntranceDate(rset.getDate("Entrance_Date"));		
+				result.setStudentAddress(rset.getString("Student_Address"));
+				result.setStudentSsn(rset.getString("Student_Ssn"));
+				result.setStudentName(rset.getString("Student_Name"));
+				result.setStudentNO(rset.getString("Student_No"));
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		
+		// finally블럭은 생성순서 반대로한다.
+		}finally {
+			try {
+				if(rset!=null) rset.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		//확인됐으면 이거 없애준다. (확인 다 됐으니-전에꺼는 엄청 길어서 괜찮았는데 지금은 한 줄이라서 그냥 냅둬도 상관없다.)
+		System.out.println(result);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// DB에서 tb_student 테이블의 있는 모든 내용을 읽어서 꺼냄. 
 	// selectListStudent() 이 메소드는  List<StudentVo> 이걸로 리턴 할거여(return result;)
 	public List<StudentVo> selectListStudent() {
 		List<StudentVo> result = null;
