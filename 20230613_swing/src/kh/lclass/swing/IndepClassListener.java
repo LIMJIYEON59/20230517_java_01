@@ -1,4 +1,4 @@
-package kh.lclass.swing;
+package src.kh.lclass.swing;
 
 public class IndepClassListener {
 
